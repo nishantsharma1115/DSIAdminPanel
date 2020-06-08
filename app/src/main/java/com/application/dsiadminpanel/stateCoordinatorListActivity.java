@@ -53,7 +53,7 @@ public class stateCoordinatorListActivity extends AppCompatActivity {
 
     private void initRecyclerView() {
         if (Objects.requireNonNull(viewModel.getStateCoordinatorList().getValue()).getStateCoordinators() != null) {
-            adapter = new coordinatorAdapter(this, viewModel.getStateCoordinatorList().getValue().getStateCoordinators());
+            adapter = new coordinatorAdapter(this, "State Coordinator", viewModel.getStateCoordinatorList().getValue().getStateCoordinators());
         } else {
             Toast.makeText(this, "No data Found", Toast.LENGTH_LONG).show();
             finish();

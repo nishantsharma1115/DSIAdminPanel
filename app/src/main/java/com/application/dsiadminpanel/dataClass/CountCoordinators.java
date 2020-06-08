@@ -1,7 +1,7 @@
 package com.application.dsiadminpanel.dataClass;
 
 public class CountCoordinators {
-    private int stateCoordinator, zoneCoordinator, Distributor, districtCoordinator, blockCoordinator, navPanchayat, customer;
+    private int stateCoordinator, zoneCoordinator, Distributor, districtCoordinator, blockCoordinator, navPanchayat;
 
     public CountCoordinators() {
         stateCoordinator = 0;
@@ -10,7 +10,6 @@ public class CountCoordinators {
         Distributor = 0;
         blockCoordinator = 0;
         navPanchayat = 0;
-        customer = 0;
     }
 
     public int getStateCoordinator() {
@@ -59,13 +58,5 @@ public class CountCoordinators {
 
     public void setNavPanchayat(int navPanchayat) {
         this.navPanchayat = navPanchayat;
-    }
-
-    public int getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(int customer) {
-        this.customer = customer;
     }
 }

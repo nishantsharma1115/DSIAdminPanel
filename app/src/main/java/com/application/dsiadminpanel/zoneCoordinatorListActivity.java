@@ -77,13 +77,13 @@ public class zoneCoordinatorListActivity extends AppCompatActivity {
 
     private void initRecyclerView() {
         if (showOnly != null) {
-            if (showOnly.equals("ALL")) {
-                adapter = new coordinatorAdapter(this, Objects.requireNonNull(viewModel.getAllZoneCoordinator().getValue()).getZoneCoordinators());
+            if (showOnly.equals("All")) {
+                adapter = new coordinatorAdapter(this, "Zone Coordinator", Objects.requireNonNull(viewModel.getAllZoneCoordinator().getValue()).getZoneCoordinators());
                 RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(this);
                 binding.recyclerView.setLayoutManager(linearLayout);
                 binding.recyclerView.setAdapter(adapter);
             } else {
-                adapter = new coordinatorAdapter(this, Objects.requireNonNull(viewModel.getZoneCoordinatorList(showOnly).getValue()).getZoneCoordinators());
+                adapter = new coordinatorAdapter(this, "Zone Coordinator", Objects.requireNonNull(viewModel.getZoneCoordinatorList(showOnly).getValue()).getZoneCoordinators());
                 RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(this);
                 binding.recyclerView.setLayoutManager(linearLayout);
                 binding.recyclerView.setAdapter(adapter);

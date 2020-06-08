@@ -77,13 +77,13 @@ public class blockCoordinatorListActivity extends AppCompatActivity {
 
     private void initRecyclerView() {
         if (showOnly != null) {
-            if (showOnly.equals("ALL")) {
-                adapter = new coordinatorAdapter(this, Objects.requireNonNull(viewModel.getAllBlockCoordinator().getValue()).getBlockCoordinators());
+            if (showOnly.equals("All")) {
+                adapter = new coordinatorAdapter(this, "Block Coordinator", Objects.requireNonNull(viewModel.getAllBlockCoordinator().getValue()).getBlockCoordinators());
                 RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(this);
                 binding.recyclerView.setLayoutManager(linearLayout);
                 binding.recyclerView.setAdapter(adapter);
             } else {
-                adapter = new coordinatorAdapter(this, Objects.requireNonNull(viewModel.getBlockCoordinatorList(showOnly).getValue()).getBlockCoordinators());
+                adapter = new coordinatorAdapter(this, "Block Coordinator", Objects.requireNonNull(viewModel.getBlockCoordinatorList(showOnly).getValue()).getBlockCoordinators());
                 RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(this);
                 binding.recyclerView.setLayoutManager(linearLayout);
                 binding.recyclerView.setAdapter(adapter);

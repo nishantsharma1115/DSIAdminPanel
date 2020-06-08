@@ -9,6 +9,10 @@
             name="count"
             type="com.application.dsiadminpanel.dataClass.CountCoordinators" />
 
+        <variable
+            name="countCustomer"
+            type="Integer" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -291,7 +295,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
-                                android:text="@{String.valueOf(count.customer)}"
+                                android:text="@{String.valueOf(countCustomer)}"
                                 android:textSize="25sp" />
 
                             <TextView

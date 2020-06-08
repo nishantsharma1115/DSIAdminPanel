@@ -2,6 +2,7 @@ package com.application.dsiadminpanel;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,6 +49,24 @@ public class adminDashboardActivity extends AppCompatActivity implements View.On
             }
         });
 
+        viewModel.getCustomerCount().observe(this, new Observer<RequestCall>() {
+            @Override
+            public void onChanged(RequestCall requestCall) {
+                if (requestCall.getStatus() == Constants.OPERATION_IN_PROGRESS) {
+                    binding.progressBar.setVisibility(View.VISIBLE);
+                    binding.adminDashboard.setAlpha((float) 0.4);
+                } else if (requestCall.getStatus() == Constants.OPERATION_COMPLETE_SUCCESS && requestCall.getMessage().equals("Finished")) {
+                    binding.setCountCustomer(requestCall.getCustomerCount());
+                    binding.progressBar.setVisibility(View.GONE);
+                    binding.adminDashboard.setAlpha(1);
+                } else if (requestCall.getStatus() == Constants.OPERATION_COMPLETE_SUCCESS && requestCall.getMessage().equals("No data Found")) {
+                    binding.setCountCustomer(0);
+                    binding.progressBar.setVisibility(View.GONE);
+                    binding.adminDashboard.setAlpha(1);
+                }
+            }
+        });
+
         binding.showPendingForm.setOnClickListener(this);
         binding.showStateCoordinator.setOnClickListener(this);
         binding.showZoneCoordinator.setOnClickListener(this);
@@ -69,9 +88,25 @@ public class adminDashboardActivity extends AppCompatActivity implements View.On
             Intent intent = new Intent(adminDashboardActivity.this, zoneCoordinatorListActivity.class);
             intent.putExtra("stateCoordinatorId", "All");
             startActivity(intent);
-        } else if (view.getId() == R.id.showZoneCoordinator) {
+        } else if (view.getId() == R.id.showDistributor) {
+            Intent intent = new Intent(adminDashboardActivity.this, distributorListActivity.class);
+            intent.putExtra("zoneCoordinatorId", "All");
+            startActivity(intent);
+        } else if (view.getId() == R.id.showDistrictCoordinator) {
+            Intent intent = new Intent(adminDashboardActivity.this, districtCoordinatorListActivity.class);
+            intent.putExtra("distributorId", "All");
+            startActivity(intent);
+        } else if (view.getId() == R.id.showBlockCoordinator) {
             Intent intent = new Intent(adminDashboardActivity.this, blockCoordinatorListActivity.class);
             intent.putExtra("districtCoordinatorId", "All");
+            startActivity(intent);
+        } else if (view.getId() == R.id.showNavPanchayat) {
+            Intent intent = new Intent(adminDashboardActivity.this, navPanchayatListActivity.class);
+            intent.putExtra("blockCoordinatorId", "All");
+            startActivity(intent);
+        } else if (view.getId() == R.id.showCustomers) {
+            Intent intent = new Intent(adminDashboardActivity.this, customerListActivity.class);
+            intent.putExtra("navPanchayatId", "All");
             startActivity(intent);
         }
     }

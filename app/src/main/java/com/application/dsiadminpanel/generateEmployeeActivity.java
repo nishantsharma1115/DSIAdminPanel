@@ -106,6 +106,7 @@ public class generateEmployeeActivity extends AppCompatActivity implements View.
                         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         binding.backgroundLayout.setAlpha((float) 0.4);
                     } else if (requestCall.getStatus() == Constants.OPERATION_COMPLETE_SUCCESS && requestCall.getMessage().equals("Finished")) {
+                        employee.setUserId(requestCall.getUserId());
                         registerEmployee(requestCall.getUserId());
                         binding.progressBar.setVisibility(View.GONE);
                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
