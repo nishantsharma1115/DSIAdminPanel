@@ -1,5 +1,6 @@
 package com.application.dsiadminpanel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class distributorListActivity extends AppCompatActivity {
     dataViewModel viewModel;
     coordinatorAdapter adapter;
     String showOnly;
+    private static final String DISTRIBUTOR = "Distributor";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,18 +74,28 @@ public class distributorListActivity extends AppCompatActivity {
                 });
             }
         }
+
+        binding.showOnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(distributorListActivity.this, trackEmployeeOnMapActivity.class);
+                intent.putExtra("Post", DISTRIBUTOR);
+                startActivity(intent);
+            }
+        });
+
         initRecyclerView();
     }
 
     private void initRecyclerView() {
         if (showOnly != null) {
             if (showOnly.equals("All")) {
-                adapter = new coordinatorAdapter(this, "Distributor", Objects.requireNonNull(viewModel.getAllDistributor().getValue()).getDistributors());
+                adapter = new coordinatorAdapter(this, DISTRIBUTOR, Objects.requireNonNull(viewModel.getAllDistributor().getValue()).getDistributors());
                 RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(this);
                 binding.recyclerView.setLayoutManager(linearLayout);
                 binding.recyclerView.setAdapter(adapter);
             } else {
-                adapter = new coordinatorAdapter(this, "Distributor", Objects.requireNonNull(viewModel.getDistributor(showOnly).getValue()).getDistributors());
+                adapter = new coordinatorAdapter(this, DISTRIBUTOR, Objects.requireNonNull(viewModel.getDistributor(showOnly).getValue()).getDistributors());
                 RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(this);
                 binding.recyclerView.setLayoutManager(linearLayout);
                 binding.recyclerView.setAdapter(adapter);

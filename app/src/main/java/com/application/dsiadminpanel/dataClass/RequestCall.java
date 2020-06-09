@@ -6,11 +6,27 @@ public class RequestCall {
     private int status;
     private String message;
     private Employee employee;
-    private ArrayList<Employee> pendingEmployees, stateCoordinators, zoneCoordinators, distributors, districtCoordinators, blockCoordinators, navPanchayat, customers;
+    private ArrayList<Employee> pendingEmployees;
+    private ArrayList<Employee> stateCoordinators;
+    private ArrayList<Employee> zoneCoordinators;
+    private ArrayList<Employee> distributors;
+    private ArrayList<Employee> districtCoordinators;
+    private ArrayList<Employee> blockCoordinators;
+    private ArrayList<Employee> navPanchayat;
+    private ArrayList<Employee> customers;
+    private ArrayList<EmployeeLocation> employeeLocations;
     private String userId;
     private String post;
     private CountCoordinators count;
     private int customerCount;
+
+    public ArrayList<EmployeeLocation> getEmployeeLocations() {
+        return employeeLocations;
+    }
+
+    public void setEmployeeLocations(ArrayList<EmployeeLocation> employeeLocations) {
+        this.employeeLocations = employeeLocations;
+    }
 
     public int getCustomerCount() {
         return customerCount;

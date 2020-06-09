@@ -1,5 +1,6 @@
 package com.application.dsiadminpanel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class districtCoordinatorListActivity extends AppCompatActivity {
     dataViewModel viewModel;
     coordinatorAdapter adapter;
     String showOnly;
+    private static final String DISTRICT_COORDINATOR = "District Coordinator";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,61 +35,67 @@ public class districtCoordinatorListActivity extends AppCompatActivity {
 
         showOnly = getIntent().getStringExtra("distributorId");
 
-        if (showOnly != null) {
-            if (showOnly.equals("All")) {
-                viewModel.getAllDistrictCoordinator().observe(this, new Observer<RequestCall>() {
-                    @Override
-                    public void onChanged(RequestCall requestCall) {
-                        if (requestCall.getStatus() == 0) {
-                            binding.progressBar.setVisibility(View.VISIBLE);
-                            binding.backgroundLayout.setAlpha((float) 0.4);
-                        } else if (requestCall.getStatus() == 1 && requestCall.getMessage().equals("Finished")) {
-                            binding.progressBar.setVisibility(View.GONE);
-                            binding.backgroundLayout.setAlpha(1);
-                            adapter.notifyDataSetChanged();
-                        } else if (requestCall.getStatus() == 1 && requestCall.getMessage().equals("No data Found")) {
-                            Toast.makeText(districtCoordinatorListActivity.this, "No Data Found", Toast.LENGTH_SHORT).show();
-                        } else if (requestCall.getStatus() == -1) {
-                            Toast.makeText(districtCoordinatorListActivity.this, "Failed while processing data", Toast.LENGTH_SHORT).show();
-                        }
+        if (showOnly != null && showOnly.equals("All")) {
+            viewModel.getAllDistrictCoordinator().observe(this, new Observer<RequestCall>() {
+                @Override
+                public void onChanged(RequestCall requestCall) {
+                    if (requestCall.getStatus() == 0) {
+                        binding.progressBar.setVisibility(View.VISIBLE);
+                        binding.backgroundLayout.setAlpha((float) 0.4);
+                    } else if (requestCall.getStatus() == 1 && requestCall.getMessage().equals("Finished")) {
+                        binding.progressBar.setVisibility(View.GONE);
+                        binding.backgroundLayout.setAlpha(1);
+                        adapter.notifyDataSetChanged();
+                    } else if (requestCall.getStatus() == 1 && requestCall.getMessage().equals("No data Found")) {
+                        Toast.makeText(districtCoordinatorListActivity.this, "No Data Found", Toast.LENGTH_SHORT).show();
+                    } else if (requestCall.getStatus() == -1) {
+                        Toast.makeText(districtCoordinatorListActivity.this, "Failed while processing data", Toast.LENGTH_SHORT).show();
                     }
-                });
-            } else {
-                viewModel.getDistrictCoordinator(showOnly).observe(this, new Observer<RequestCall>() {
-                    @Override
-                    public void onChanged(RequestCall requestCall) {
-                        if (requestCall.getStatus() == 0) {
-                            binding.progressBar.setVisibility(View.VISIBLE);
-                            binding.backgroundLayout.setAlpha((float) 0.4);
-                        } else if (requestCall.getStatus() == 1 && requestCall.getMessage().equals("Finished")) {
-                            binding.progressBar.setVisibility(View.GONE);
-                            binding.backgroundLayout.setAlpha(1);
-                            adapter.notifyDataSetChanged();
-                        } else if (requestCall.getStatus() == 1 && requestCall.getMessage().equals("No data Found")) {
-                            Toast.makeText(districtCoordinatorListActivity.this, "No Data Found", Toast.LENGTH_SHORT).show();
-                        } else if (requestCall.getStatus() == -1) {
-                            Toast.makeText(districtCoordinatorListActivity.this, "Failed while processing data", Toast.LENGTH_SHORT).show();
-                        }
+                }
+            });
+        } else {
+            viewModel.getDistrictCoordinator(showOnly).observe(this, new Observer<RequestCall>() {
+                @Override
+                public void onChanged(RequestCall requestCall) {
+                    if (requestCall.getStatus() == 0) {
+                        binding.progressBar.setVisibility(View.VISIBLE);
+                        binding.backgroundLayout.setAlpha((float) 0.4);
+                    } else if (requestCall.getStatus() == 1 && requestCall.getMessage().equals("Finished")) {
+                        binding.progressBar.setVisibility(View.GONE);
+                        binding.backgroundLayout.setAlpha(1);
+                        adapter.notifyDataSetChanged();
+                    } else if (requestCall.getStatus() == 1 && requestCall.getMessage().equals("No data Found")) {
+                        Toast.makeText(districtCoordinatorListActivity.this, "No Data Found", Toast.LENGTH_SHORT).show();
+                    } else if (requestCall.getStatus() == -1) {
+                        Toast.makeText(districtCoordinatorListActivity.this, "Failed while processing data", Toast.LENGTH_SHORT).show();
                     }
-                });
-            }
+                }
+            });
         }
+
+        binding.showOnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(districtCoordinatorListActivity.this, trackEmployeeOnMapActivity.class);
+                intent.putExtra("Post", DISTRICT_COORDINATOR);
+                startActivity(intent);
+            }
+        });
+
         initRecyclerView();
     }
 
     private void initRecyclerView() {
-        if (showOnly != null) {
-            if (showOnly.equals("All")) {
-                adapter = new coordinatorAdapter(this, "District Coordinator", Objects.requireNonNull(viewModel.getAllDistrictCoordinator().getValue()).getDistrictCoordinators());
-                RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(this);
-                binding.recyclerView.setLayoutManager(linearLayout);
-                binding.recyclerView.setAdapter(adapter);
-            } else {
-                adapter = new coordinatorAdapter(this, "District Coordinator", Objects.requireNonNull(viewModel.getDistrictCoordinator(showOnly).getValue()).getDistrictCoordinators());
-                RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(this);
-                binding.recyclerView.setLayoutManager(linearLayout);
-                binding.recyclerView.setAdapter(adapter);
-            }
+        if (showOnly != null && showOnly.equals("All")) {
+            adapter = new coordinatorAdapter(this, DISTRICT_COORDINATOR, Objects.requireNonNull(viewModel.getAllDistrictCoordinator().getValue()).getDistrictCoordinators());
+            RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(this);
+            binding.recyclerView.setLayoutManager(linearLayout);
+            binding.recyclerView.setAdapter(adapter);
+        } else {
+            adapter = new coordinatorAdapter(this, DISTRICT_COORDINATOR, Objects.requireNonNull(viewModel.getDistrictCoordinator(showOnly).getValue()).getDistrictCoordinators());
+            RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(this);
+            binding.recyclerView.setLayoutManager(linearLayout);
+            binding.recyclerView.setAdapter(adapter);
         }
     }
 }

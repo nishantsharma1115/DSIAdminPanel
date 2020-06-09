@@ -1,5 +1,6 @@
 package com.application.dsiadminpanel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class blockCoordinatorListActivity extends AppCompatActivity {
     dataViewModel viewModel;
     coordinatorAdapter adapter;
     String showOnly;
+    private static final String BLOCK_COORDINATOR = "Block Coordinator";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,21 +74,41 @@ public class blockCoordinatorListActivity extends AppCompatActivity {
                 });
             }
         }
+
+        binding.showOnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(blockCoordinatorListActivity.this, trackEmployeeOnMapActivity.class);
+                intent.putExtra("Post", BLOCK_COORDINATOR);
+                startActivity(intent);
+            }
+        });
+
         initRecyclerView();
     }
 
     private void initRecyclerView() {
         if (showOnly != null) {
             if (showOnly.equals("All")) {
-                adapter = new coordinatorAdapter(this, "Block Coordinator", Objects.requireNonNull(viewModel.getAllBlockCoordinator().getValue()).getBlockCoordinators());
-                RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(this);
-                binding.recyclerView.setLayoutManager(linearLayout);
-                binding.recyclerView.setAdapter(adapter);
+                if (Objects.requireNonNull(viewModel.getAllBlockCoordinator().getValue()).getBlockCoordinators() != null) {
+                    binding.noDataFound.setVisibility(View.GONE);
+                    adapter = new coordinatorAdapter(this, BLOCK_COORDINATOR, Objects.requireNonNull(viewModel.getAllBlockCoordinator().getValue()).getBlockCoordinators());
+                    RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(this);
+                    binding.recyclerView.setLayoutManager(linearLayout);
+                    binding.recyclerView.setAdapter(adapter);
+                } else {
+                    binding.noDataFound.setVisibility(View.VISIBLE);
+                }
             } else {
-                adapter = new coordinatorAdapter(this, "Block Coordinator", Objects.requireNonNull(viewModel.getBlockCoordinatorList(showOnly).getValue()).getBlockCoordinators());
-                RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(this);
-                binding.recyclerView.setLayoutManager(linearLayout);
-                binding.recyclerView.setAdapter(adapter);
+                if (Objects.requireNonNull(viewModel.getBlockCoordinatorList(showOnly).getValue()).getBlockCoordinators() != null) {
+                    binding.noDataFound.setVisibility(View.GONE);
+                    adapter = new coordinatorAdapter(this, BLOCK_COORDINATOR, Objects.requireNonNull(viewModel.getBlockCoordinatorList(showOnly).getValue()).getBlockCoordinators());
+                    RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(this);
+                    binding.recyclerView.setLayoutManager(linearLayout);
+                    binding.recyclerView.setAdapter(adapter);
+                } else {
+                    binding.noDataFound.setVisibility(View.VISIBLE);
+                }
             }
         }
     }

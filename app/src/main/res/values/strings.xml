@@ -183,4 +183,7 @@
         <item>District Coordinator</item>
         <item>Block Coordinator</item>
     </string-array>
+    <string name="title_activity_track_employee_on_map">Map</string>
+    <string name="no_employee_found">No Employee Found</string>
+    <string name="employee_id">Employee ID:</string>
 </resources>

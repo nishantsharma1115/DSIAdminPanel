@@ -30,5 +30,25 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
             android:visibility="gone" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/showOnMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="30dp"
+            app:srcCompat="@drawable/map_icon"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/noDataFound"
+            android:layout_gravity="center"
+            android:text="@string/no_employee_found"
+            android:textSize="30sp"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </FrameLayout>
 </layout>

@@ -658,10 +658,8 @@ public class dataRepository {
                 if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0) {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         Employee current = ds.getValue(Employee.class);
-                        if (current != null) {
-                            if (current.getPost().equals("Customer") && current.getNavPanchayatId().equals(navPanchayatId)) {
-                                customers.add(current);
-                            }
+                        if (current != null && current.getPost().equals("Customer") && current.getNavPanchayatId().equals(navPanchayatId)) {
+                            customers.add(current);
                         }
                     }
                     r.setStatus(Constants.OPERATION_COMPLETE_SUCCESS);
@@ -699,10 +697,8 @@ public class dataRepository {
                 if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0) {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         Employee current = ds.getValue(Employee.class);
-                        if (current != null) {
-                            if (current.getPost().equals("Customer")) {
-                                customers.add(current);
-                            }
+                        if (current != null && current.getPost().equals("Customer")) {
+                            customers.add(current);
                         }
                     }
                     r.setStatus(Constants.OPERATION_COMPLETE_SUCCESS);

@@ -1,5 +1,6 @@
 package com.application.dsiadminpanel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -48,18 +49,28 @@ public class stateCoordinatorListActivity extends AppCompatActivity {
             }
         });
 
+        binding.showOnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(stateCoordinatorListActivity.this, trackEmployeeOnMapActivity.class);
+                intent.putExtra("Post", "State Coordinator");
+                startActivity(intent);
+            }
+        });
+
         initRecyclerView();
     }
 
     private void initRecyclerView() {
         if (Objects.requireNonNull(viewModel.getStateCoordinatorList().getValue()).getStateCoordinators() != null) {
+            binding.noDataFound.setVisibility(View.GONE);
             adapter = new coordinatorAdapter(this, "State Coordinator", viewModel.getStateCoordinatorList().getValue().getStateCoordinators());
+            RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(this);
+            binding.recyclerView.setLayoutManager(linearLayout);
+            binding.recyclerView.setAdapter(adapter);
         } else {
-            Toast.makeText(this, "No data Found", Toast.LENGTH_LONG).show();
-            finish();
+            binding.noDataFound.setVisibility(View.VISIBLE);
         }
-        RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(this);
-        binding.recyclerView.setLayoutManager(linearLayout);
-        binding.recyclerView.setAdapter(adapter);
+
     }
 }
