@@ -19,6 +19,7 @@ import com.application.dsiadminpanel.Common.Constants;
 import com.application.dsiadminpanel.ViewModel.authViewModel;
 import com.application.dsiadminpanel.dataClass.RequestCall;
 import com.application.dsiadminpanel.databinding.ActivityLoginBinding;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
@@ -34,6 +35,7 @@ public class loginActivity extends AppCompatActivity implements View.OnKeyListen
     protected void onStart() {
         super.onStart();
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             Intent intent = new Intent(loginActivity.this, employeeDashboardActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

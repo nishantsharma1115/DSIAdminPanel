@@ -282,28 +282,19 @@
 
                         <LinearLayout
                             android:id="@+id/showCustomers"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
+                            android:layout_width="230dp"
+                            android:layout_height="50dp"
                             android:layout_marginTop="20dp"
                             android:background="@drawable/admin_dashboard_stats"
-                            android:gravity="center_vertical"
+                            android:gravity="center"
                             android:orientation="vertical"
                             android:padding="10dp">
-
-                            <TextView
-                                android:id="@+id/countCustomer"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:text="@{String.valueOf(countCustomer)}"
-                                android:textSize="25sp" />
 
                             <TextView
                                 android:id="@+id/txtCustomer"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
-                                android:layout_marginTop="10dp"
                                 android:text="@string/customer" />
 
                         </LinearLayout>

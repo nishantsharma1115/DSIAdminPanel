@@ -55,6 +55,7 @@ public class employeeDashboardActivity extends AppCompatActivity implements View
         }
 
         binding.btnViewAll.setOnClickListener(this);
+        binding.userProfile.setOnClickListener(this);
     }
 
     private void updateUi(Employee employee) {
@@ -103,6 +104,10 @@ public class employeeDashboardActivity extends AppCompatActivity implements View
     public void onClick(View view) {
         if (view.getId() == R.id.btn_viewAll) {
             showNextCoordinators(employee);
+        } else if (view.getId() == R.id.userProfile) {
+            Intent intent = new Intent(employeeDashboardActivity.this, employeeProfileActivity.class);
+            intent.putExtra("userId", employee.getUserId());
+            startActivity(intent);
         }
     }
 

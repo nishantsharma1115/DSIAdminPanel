@@ -144,7 +144,7 @@
     <string name="panchayat">Panchayat</string>
     <string name="distributor">Distributor</string>
     <string name="view_customers">View Customers</string>
-    <string name="customer">Customer</string>
+    <string name="customer">Show all Customer</string>
     <string name="enter_employee_id">Enter Employee Id</string>
     <string name="show_zone_coordinator">Show Zone Coordinator</string>
     <string name="show_distributor">Show Distributor</string>

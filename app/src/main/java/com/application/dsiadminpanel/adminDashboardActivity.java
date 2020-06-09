@@ -2,6 +2,7 @@ package com.application.dsiadminpanel;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,24 +43,6 @@ public class adminDashboardActivity extends AppCompatActivity implements View.On
                     binding.adminDashboard.setAlpha(1);
                 } else if (requestCall.getStatus() == Constants.OPERATION_COMPLETE_SUCCESS && requestCall.getMessage().equals("No data Found")) {
                     binding.setCount(new CountCoordinators());
-                    binding.progressBar.setVisibility(View.GONE);
-                    binding.adminDashboard.setAlpha(1);
-                }
-            }
-        });
-
-        viewModel.getCustomerCount().observe(this, new Observer<RequestCall>() {
-            @Override
-            public void onChanged(RequestCall requestCall) {
-                if (requestCall.getStatus() == Constants.OPERATION_IN_PROGRESS) {
-                    binding.progressBar.setVisibility(View.VISIBLE);
-                    binding.adminDashboard.setAlpha((float) 0.4);
-                } else if (requestCall.getStatus() == Constants.OPERATION_COMPLETE_SUCCESS && requestCall.getMessage().equals("Finished")) {
-                    binding.setCountCustomer(requestCall.getCustomerCount());
-                    binding.progressBar.setVisibility(View.GONE);
-                    binding.adminDashboard.setAlpha(1);
-                } else if (requestCall.getStatus() == Constants.OPERATION_COMPLETE_SUCCESS && requestCall.getMessage().equals("No data Found")) {
-                    binding.setCountCustomer(0);
                     binding.progressBar.setVisibility(View.GONE);
                     binding.adminDashboard.setAlpha(1);
                 }

@@ -29,10 +29,6 @@ public class dataViewModel extends ViewModel {
         return repository.getCountCoordinators();
     }
 
-    public MutableLiveData<RequestCall> getCustomerCount() {
-        return repository.getCustomerCount();
-    }
-
     public MutableLiveData<RequestCall> getStateCoordinatorList() {
         return repository.getStateCoordinators();
     }

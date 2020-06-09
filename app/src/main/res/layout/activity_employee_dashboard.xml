@@ -23,9 +23,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/dashboardBackground"
-                android:background="@drawable/background"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@drawable/background">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profilePicture"
@@ -90,29 +90,12 @@
                     android:id="@+id/userProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/button_border"
                     android:text="@string/view_profile"
-                    app:layout_constraintTop_toBottomOf="@id/tv_phone"
-                    app:layout_constraintStart_toStartOf="@id/tv_phone"
                     app:layout_constraintEnd_toEndOf="@id/tv_phone"
-                    android:layout_marginTop="20dp"/>
-
-                <Button
-                    android:id="@+id/btn_newReg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/new_reg_bg"
-                    android:drawableStart="@drawable/person_add"
-                    android:drawablePadding="10dp"
-                    android:layout_marginTop="30dp"
-                    android:paddingStart="40dp"
-                    android:paddingEnd="40dp"
-                    android:text="@string/new_registration"
-                    android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/userProfile" />
+                    app:layout_constraintStart_toStartOf="@id/tv_phone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_phone" />
 
                 <Button
                     android:id="@+id/btn_viewAll"
@@ -125,7 +108,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_newReg" />
+                    app:layout_constraintTop_toBottomOf="@+id/userProfile" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

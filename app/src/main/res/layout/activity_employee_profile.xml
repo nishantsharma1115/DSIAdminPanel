@@ -18,7 +18,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".pendingEmployeeProfileActivity">
+        tools:context=".employeeProfileActivity">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -34,20 +34,32 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/background_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:context=".applyForDigitalCardActivity">
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@{employee.post}"
+                        android:textColor="@color/black"
+                        android:textSize="30sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
-                        android:layout_marginTop="50dp"
+                        android:layout_marginTop="20dp"
                         android:text="@string/name"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_post" />
 
                     <TextView
                         android:id="@+id/name"
@@ -63,7 +75,7 @@
                         android:id="@+id/tv_fatherName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:text="@string/father_name"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -85,7 +97,7 @@
                         android:id="@+id/tv_motherName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:text="@string/mother_name"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -106,7 +118,7 @@
                         android:id="@+id/tv_dob"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:text="@string/dob"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -127,7 +139,7 @@
                         android:id="@+id/tv_gender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:text="@string/gender"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -148,7 +160,7 @@
                         android:id="@+id/tv_panNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:text="@string/pan_no"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -169,7 +181,7 @@
                         android:id="@+id/tv_aadhaar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:text="@string/aadhaar_number"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -190,7 +202,7 @@
                         android:id="@+id/tv_voter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:text="@string/voter_number"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -211,7 +223,7 @@
                         android:id="@+id/tv_ration"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:text="@string/ration_number"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -232,7 +244,7 @@
                         android:id="@+id/tv_nationality"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:text="@string/nationality"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -253,35 +265,35 @@
                         android:id="@+id/tv_fullAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:text="@string/address"
                         android:textColor="@color/black"
                         android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/txtFullAddress"
                         app:layout_constraintStart_toStartOf="@+id/tv_nationality"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_nationality" />
+                        app:layout_constraintTop_toTopOf="@+id/txtFullAddress" />
 
                     <TextView
                         android:id="@+id/txtFullAddress"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
+                        android:layout_marginTop="12dp"
                         android:layout_marginEnd="20dp"
                         android:text="@{fullAddress}"
-                        app:layout_constraintBottom_toBottomOf="@+id/tv_fullAddress"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tv_fullAddress"
-                        app:layout_constraintTop_toTopOf="@id/tv_fullAddress" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_nationality" />
 
                     <TextView
                         android:id="@+id/tv_mobile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:text="@string/phone_number"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="@+id/tv_fullAddress"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_fullAddress" />
+                        app:layout_constraintTop_toBottomOf="@+id/txtFullAddress" />
 
                     <TextView
                         android:id="@+id/mobile"
@@ -297,7 +309,7 @@
                         android:id="@+id/tv_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:text="@string/email"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -318,7 +330,7 @@
                         android:id="@+id/tv_bankName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:text="@string/bank_name"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -339,7 +351,7 @@
                         android:id="@+id/tv_branch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="12dp"
                         android:text="@string/branch"
                         android:textColor="@color/black"
                         android:textSize="18sp"
@@ -355,7 +367,6 @@
                         app:layout_constraintBottom_toBottomOf="@+id/tv_branch"
                         app:layout_constraintStart_toEndOf="@id/tv_branch"
                         app:layout_constraintTop_toTopOf="@id/tv_branch" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <ProgressBar

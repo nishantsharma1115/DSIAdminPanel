@@ -192,41 +192,6 @@ public class dataRepository {
 
     }
 
-    public MutableLiveData<RequestCall> getCustomerCount() {
-        final RequestCall r = new RequestCall();
-        r.setStatus(Constants.OPERATION_IN_PROGRESS);
-        r.setMessage("Please Wait....");
-        r.setCustomerCount(0);
-        downloadMutableLiveData.setValue(r);
-
-        DB.child("Customers").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0) {
-                    int count = 0;
-                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        count++;
-                    }
-                    r.setStatus(Constants.OPERATION_IN_PROGRESS);
-                    r.setMessage("Finished");
-                    r.setCustomerCount(count);
-                } else {
-                    r.setStatus(Constants.OPERATION_IN_PROGRESS);
-                    r.setMessage("No data Found");
-                }
-                downloadMutableLiveData.postValue(r);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                r.setStatus(Constants.OPERATION_COMPLETE_FAILURE);
-                r.setMessage(databaseError.getMessage());
-                downloadMutableLiveData.postValue(r);
-            }
-        });
-        return downloadMutableLiveData;
-    }
-
     public MutableLiveData<RequestCall> getStateCoordinators() {
         final RequestCall r = new RequestCall();
         final ArrayList<Employee> stateCoordinators = new ArrayList<>();
