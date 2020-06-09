@@ -1,7 +1,5 @@
 package com.application.dsiadminpanel.Repositories;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
@@ -117,23 +115,22 @@ public class authRepository {
         DB.child("ADMIN").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                boolean isAdmin = false;
+                boolean isEmailVerified = false, isPasswordVerified = false;
                 if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0) {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         if (Objects.equals(ds.getKey(), "emailId")) {
                             String value = ds.getValue(String.class);
                             if (value != null) {
-                                isAdmin = value.equals(email);
+                                isEmailVerified = value.equals(email);
                             }
                         } else if (Objects.equals(ds.getKey(), "password")) {
                             String value = ds.getValue(String.class);
                             if (value != null) {
-                                isAdmin = value.equals(password);
+                                isPasswordVerified = value.equals(password);
                             }
                         }
                     }
-                    Log.d("Inside", String.valueOf(isAdmin));
-                    if (isAdmin) {
+                    if (isEmailVerified && isPasswordVerified) {
                         r.setStatus(Constants.OPERATION_COMPLETE_SUCCESS);
                         r.setMessage("Admin");
                     } else {

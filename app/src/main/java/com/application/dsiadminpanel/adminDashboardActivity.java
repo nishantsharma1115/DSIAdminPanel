@@ -2,7 +2,6 @@ package com.application.dsiadminpanel;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,34 +79,49 @@ public class adminDashboardActivity extends AppCompatActivity implements View.On
     @Override
     public void onClick(View view) {
 
-        if (view.getId() == R.id.showPendingForm) {
-            startActivity(new Intent(adminDashboardActivity.this, pendingFormListActivity.class));
-        } else if (view.getId() == R.id.showStateCoordinator) {
-            startActivity(new Intent(adminDashboardActivity.this, stateCoordinatorListActivity.class));
-        } else if (view.getId() == R.id.showZoneCoordinator) {
-            Intent intent = new Intent(adminDashboardActivity.this, zoneCoordinatorListActivity.class);
-            intent.putExtra("stateCoordinatorId", "All");
-            startActivity(intent);
-        } else if (view.getId() == R.id.showDistributor) {
-            Intent intent = new Intent(adminDashboardActivity.this, distributorListActivity.class);
-            intent.putExtra("zoneCoordinatorId", "All");
-            startActivity(intent);
-        } else if (view.getId() == R.id.showDistrictCoordinator) {
-            Intent intent = new Intent(adminDashboardActivity.this, districtCoordinatorListActivity.class);
-            intent.putExtra("distributorId", "All");
-            startActivity(intent);
-        } else if (view.getId() == R.id.showBlockCoordinator) {
-            Intent intent = new Intent(adminDashboardActivity.this, blockCoordinatorListActivity.class);
-            intent.putExtra("districtCoordinatorId", "All");
-            startActivity(intent);
-        } else if (view.getId() == R.id.showNavPanchayat) {
-            Intent intent = new Intent(adminDashboardActivity.this, navPanchayatListActivity.class);
-            intent.putExtra("blockCoordinatorId", "All");
-            startActivity(intent);
-        } else if (view.getId() == R.id.showCustomers) {
-            Intent intent = new Intent(adminDashboardActivity.this, customerListActivity.class);
-            intent.putExtra("navPanchayatId", "All");
-            startActivity(intent);
+        switch (view.getId()) {
+            case R.id.showPendingForm:
+                startActivity(new Intent(adminDashboardActivity.this, pendingFormListActivity.class));
+                break;
+            case R.id.showStateCoordinator:
+                startActivity(new Intent(adminDashboardActivity.this, stateCoordinatorListActivity.class));
+                break;
+            case R.id.showZoneCoordinator: {
+                Intent intent = new Intent(adminDashboardActivity.this, zoneCoordinatorListActivity.class);
+                intent.putExtra("stateCoordinatorId", "All");
+                startActivity(intent);
+                break;
+            }
+            case R.id.showDistributor: {
+                Intent intent = new Intent(adminDashboardActivity.this, distributorListActivity.class);
+                intent.putExtra("zoneCoordinatorId", "All");
+                startActivity(intent);
+                break;
+            }
+            case R.id.showDistrictCoordinator: {
+                Intent intent = new Intent(adminDashboardActivity.this, districtCoordinatorListActivity.class);
+                intent.putExtra("distributorId", "All");
+                startActivity(intent);
+                break;
+            }
+            case R.id.showBlockCoordinator: {
+                Intent intent = new Intent(adminDashboardActivity.this, blockCoordinatorListActivity.class);
+                intent.putExtra("districtCoordinatorId", "All");
+                startActivity(intent);
+                break;
+            }
+            case R.id.showNavPanchayat: {
+                Intent intent = new Intent(adminDashboardActivity.this, navPanchayatListActivity.class);
+                intent.putExtra("blockCoordinatorId", "All");
+                startActivity(intent);
+                break;
+            }
+            case R.id.showCustomers: {
+                Intent intent = new Intent(adminDashboardActivity.this, customerListActivity.class);
+                intent.putExtra("navPanchayatId", "All");
+                startActivity(intent);
+                break;
+            }
         }
     }
 
